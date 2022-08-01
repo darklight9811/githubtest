@@ -19,7 +19,7 @@ body:
       description: What is the bug reported and how it affects the app
 
   - type: textarea
-    id: general
+    id: reproduction
     attributes:
       label: How to reproduce
       description: A step by step guide on how to reproduce the bug
