@@ -1,0 +1,71 @@
+name: 'Validation'
+on:
+  pull_request: 
+    branches:
+      - stage
+
+jobs:
+  setup:
+    name: Setup node and environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Prepare node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'yarn'
+
+      - name: Download dependencies
+        run: yarn
+
+  lint:
+    name: Lint code for standarlization
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Prepare node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'yarn'
+
+      - name: Download dependencies
+        run: yarn
+          
+      - run: yarn lint
+
+  test:
+    name: Test general packages
+    needs: [lint, audit]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Prepare node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'yarn'
+
+      - name: Download dependencies
+        run: yarn
+
+      - name: Cache build
+        id: cacheBuild
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-build
+        with:
+          path: ./packages/**/dist
+          key: ${{ runner.os }}-${{ env.cache-name }}
+          restore-keys: ${{ runner.os }}-${{ env.cache-name }}
+          
+      - name: Test
+        run: yarn test

@@ -1,0 +1,21 @@
+name: 'Reestablish dev branch'
+on:
+  push: 
+    branches:
+      - stage
+
+jobs:
+  recreate:
+    name: Recreate dev branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Recreate
+        uses: peterjgrainger/action-create-branch@v2.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: "dev"
+          sha: '${{ github.event.push.head.sha }}'
