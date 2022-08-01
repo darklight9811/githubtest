@@ -1,0 +1,47 @@
+name: Feature request
+description: Describe a new feature request to be added to ZOS
+title: "[feat] "
+labels: ["feature", "proposal"]
+assignees:
+  - darklight9811
+  - MatheusLittig
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        All features request will be approved by Diege and Lettos. You can also check our notion for more info.
+  
+  - type: input
+    id: title
+    attributes:
+      label: General idea proposed
+      description: Describe proposal in a few words/sentences.
+
+  - type: textarea
+    id: general
+    attributes:
+      label: Complete explanation
+      description: Explain throughly your idea, implementation, general impact, why should be added
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      multiple: true
+      description: What type of feature you are proposing
+      options:
+        - layout (composition)
+        - gameplay
+        - balancing
+        - community
+        - other
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

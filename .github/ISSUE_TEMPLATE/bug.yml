@@ -1,0 +1,47 @@
+name: Bug report
+description: Describe a bug report of the ZOS app
+title: "[bug] "
+labels: ["bug", "triage"]
+assignees:
+  - darklight9811
+  - MatheusLittig
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        All bug reports will be verified by Diege, Lettos, Rafael, Matheus. You can also check our notion for more info.
+
+  - type: textarea
+    id: general
+    attributes:
+      label: What is the bug
+      description: What is the bug reported and how it affects the app
+
+  - type: textarea
+    id: general
+    attributes:
+      label: How to reproduce
+      description: A step by step guide on how to reproduce the bug
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      multiple: true
+      description: Where the bug reported affects?
+      options:
+        - layout (composition)
+        - gameplay
+        - balancing
+        - community
+        - other
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
